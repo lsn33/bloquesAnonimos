@@ -15,7 +15,8 @@ public class ProductoDTO {
     private String descripcion;
     private Float precio;
     private int stock;
-    private int proveedorId; 
+    private Integer proveedorId;
+    private ProveedorDTO proveedor; 
     
 
 }

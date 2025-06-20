@@ -15,6 +15,13 @@ public class ProveedorService {
     @Autowired
     private ProveedorRepository proveedorRepository;
 
+    // Buscar proveedor por id y devolver DTO
+    public ProveedorDTO findProveedorById(Integer id) {
+        Optional<Proveedor> proveedorOpt = proveedorRepository.findById(id);
+        return proveedorOpt.map(this::translateEntityToDto).orElse(null);
+    }
+
+    // Traducir entidad Proveedor a DTO
     public ProveedorDTO translateEntityToDto(Proveedor proveedor) {
         ProveedorDTO dto = new ProveedorDTO();
         dto.setIdProveedor(proveedor.getIdProveedor());
@@ -22,10 +29,5 @@ public class ProveedorService {
         dto.setEmail(proveedor.getEmail());
         dto.setTelefono(proveedor.getTelefono());
         return dto;
-    }
-
-    public ProveedorDTO findProveedorById(Integer id) {
-        Optional<Proveedor> proveedor = proveedorRepository.findById(id);
-        return proveedor.map(this::translateEntityToDto).orElse(new ProveedorDTO());
     }
 }
